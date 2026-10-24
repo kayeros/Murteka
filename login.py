@@ -2,6 +2,7 @@ import sys
 
 from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QWidget
+from register import RegisterWindow
 
 import test_data
 
@@ -10,6 +11,7 @@ class LoginWindow(QWidget):
     def __init__(self):
         super().__init__()
         uic.loadUi('login.ui', self)
+        self.registerBtn.clicked.connect(self.open_register)
         self.loginBtn.clicked.connect(self.login)
         self.forgotBtn.clicked.connect(self.forgot_password)
         self.passwordEdit.returnPressed.connect(self.login)
@@ -37,6 +39,10 @@ class LoginWindow(QWidget):
     def forgot_password(self):
         self.errorLabel.setStyleSheet('color: red;')
         self.errorLabel.setText('Обратитесь к администратору приюта')
+
+    def open_register(self):
+        self.register_window = RegisterWindow()
+        self.register_window.show()
 
 
 if __name__ == '__main__':
