@@ -41,8 +41,9 @@ class LoginWindow(QWidget):
         self.errorLabel.setText('Обратитесь к администратору приюта')
 
     def open_register(self):
-        self.register_window = RegisterWindow()
+        self.register_window = RegisterWindow(self)
         self.register_window.show()
+        self.hide()
 
 
 if __name__ == '__main__':

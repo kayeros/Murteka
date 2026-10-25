@@ -7,10 +7,16 @@ import test_data
 
 class RegisterWindow(QWidget):
 
-    def __init__(self):
+    def __init__(self, login_window):
         super().__init__()
         uic.loadUi("register.ui", self)
+        self.login_window = login_window
         self.registerBtn.clicked.connect(self.register)
+        self.backBtn.clicked.connect(self.back)
+
+    def back(self):
+        self.login_window.show()
+        self.close()
 
     def register(self):
         try:
@@ -60,6 +66,6 @@ class RegisterWindow(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = RegisterWindow()
+    ex = RegisterWindow(None)
     ex.show()
     sys.exit(app.exec())
