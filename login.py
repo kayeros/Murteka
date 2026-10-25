@@ -3,6 +3,7 @@ import sys
 from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QWidget
 from register import RegisterWindow
+from catalog import CatalogWindow
 
 import test_data
 
@@ -30,8 +31,10 @@ class LoginWindow(QWidget):
             if found is None or found['password'] != password:
                 raise ValueError('неверный логин или пароль')
 
-            self.errorLabel.setStyleSheet('color: green;')
-            self.errorLabel.setText('Вы вошли: ' + found['name'])
+            self.catalog = CatalogWindow(found)
+            self.catalog.show()
+            self.close()
+
         except ValueError as error:
             self.errorLabel.setStyleSheet('color: red;')
             self.errorLabel.setText('Ошибка: ' + str(error))
