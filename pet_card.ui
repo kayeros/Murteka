@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>633</width>
+    <height>445</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>50</y>
+     <width>338</width>
+     <height>373</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="2">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout"/>
+      </item>
+     </layout>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="errorLabel">
+      <property name="text">
+       <string>Сохранено</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QPlainTextEdit" name="descriptionEdit">
+      <property name="placeholderText">
+       <string>Описание...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QRadioButton" name="catRadio">
+        <property name="text">
+         <string>Кошка</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">kindGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="dogRadio">
+        <property name="text">
+         <string>Собака</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">kindGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="maleRadio">
+        <property name="text">
+         <string>м</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">sexGroup</string>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="femaleRadio">
+        <property name="text">
+         <string>ж</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">sexGroup</string>
+        </attribute>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLineEdit" name="nameEdit">
+        <property name="placeholderText">
+         <string>Кличка</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="breedEdit">
+        <property name="placeholderText">
+         <string>Порода</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="ageEdit">
+        <property name="placeholderText">
+         <string>Возраст</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="saveBtn">
+      <property name="text">
+       <string>Сохранить</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="statusLabel">
+      <property name="text">
+       <string>Статус: </string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="kindGroup"/>
+  <buttongroup name="sexGroup"/>
+ </buttongroups>
+</ui>
