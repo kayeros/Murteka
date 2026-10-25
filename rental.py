@@ -1,5 +1,5 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget
+from PyQt6.QtWidgets import QApplication, QWidget, QMainWindow
 from PyQt6.QtCore import QDate
 from PyQt6 import uic
 import test_data
@@ -38,17 +38,17 @@ class RentalWindow(QWidget):
             days = self.dateFromEdit.date().daysTo(self.dateToEdit.date())
 
             if days < 1:
-                raise ValueError('дата окончания должна быть позже даты начала')
+                raise ValueError('Дата окончания должна быть позже даты начала')
 
             if days > 30:
-                raise ValueError('опека не дольше 30 дней')
+                raise ValueError('Опека не может быть дольше 30 дней')
 
             if self.pet['status'] != 'свободен':
-                raise ValueError('питомец сейчас недоступен')
+                raise ValueError('Питомец уже на передержке!')
 
             for r in test_data.RENTALS:
                 if r['pet_id'] == self.pet_id and r['user_id'] == self.user['id'] and r['status'] == 'ожидает':
-                    raise ValueError('вы уже отправили заявку на этого питомца')
+                    raise ValueError('Вы уже отправили заявку на этого питомца')
 
             test_data.RENTALS.append({
                 'id': test_data.next_id(test_data.RENTALS),
