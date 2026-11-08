@@ -1,6 +1,12 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
+import os
+import shutil
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidgetItem, QFileDialog, QHeaderView
+from PyQt6.QtGui import QPixmap
 from PyQt6 import uic
+from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QHeaderView
 import test_data
 
 
@@ -11,77 +17,140 @@ class ShelterWindow(QMainWindow):
 
         self.user = user
 
-        self.setWindowTitle(f"Муртека: {self.user['name']}")
-        self.titleLabel.setText(f"Кабинет: {self.user['name']}")
-
-        # Вкладка 1 (Новые заявки)
-        self.tabWidget.widget(0).findChild(type(self.tabWidget.widget(0)), "").findChild  # просто для инициализации
+        self.setWindowTitle("Муртека: Кабинет приюта")
         self.approveBtn.clicked.connect(self.approve)
         self.rejectBtn.clicked.connect(self.reject)
         self.refreshBtn1.clicked.connect(self.load_all)
-
         self.refreshBtn2.clicked.connect(self.load_all)
-
         self.editBtn.clicked.connect(self.open_pet_card)
         self.deleteBtn.clicked.connect(self.delete_pet)
+
+        if hasattr(self, 'editProfileBtn'):
+            self.editProfileBtn.clicked.connect(self.change_logo)
+
         self.load_all()
+        self.load_shelter_profile()
 
     def load_all(self):
-        """Обновляет все списки и статистику"""
         self.load_requests()
         self.load_history()
         self.load_stats()
         self.load_pets()
 
-    def load_requests(self):
-        """Загружает новые заявки (ожидают)"""
-        self.requestsList.clear()
-        self.requests = []
+    def load_shelter_profile(self):
+        """Загружает имя, телефон и логотип приюта в визитку"""
+        self.shelterNameLabel.setText(self.user['name'])
+        self.shelterPhoneLabel.setText(f"Тел: {self.user['phone']}")
 
-        # Ищем заявки на ОПЕКУ
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        logo_file = os.path.join(current_dir, 'logo.jpg')
+
+        if os.path.exists(logo_file) and hasattr(self, 'pic'):
+            pixmap = QPixmap(logo_file)
+            # Ставим картинку и масштабируем под размер лейбла
+            self.pic.setPixmap(pixmap.scaled(
+                200, 200,
+                Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation
+            ))
+        elif hasattr(self, 'pic'):
+            self.pic.setText("Логотип не найден")
+            print(f"Искал файл тут: {logo_file}")  # Выведет путь в консоль для проверки
+
+    def change_logo(self):
+        """Открывает окно выбора файла для загрузки нового логотипа"""
+        file_name, _ = QFileDialog.getOpenFileName(self, "Выберите логотип", "", "Images (*.png *.jpg *.jpeg)")
+        if file_name:
+            new_logo_name = f"shelter_{self.user['id']}.png"
+            shutil.copy(file_name, new_logo_name)
+            self.load_shelter_profile()
+            self.errorLabel.setText("Логотип обновлен!")
+
+    def load_requests(self):
+        """Загружает новые заявки в таблицу requestsTable"""
+        self.requestsTable.setRowCount(0)
+        self.requests = []
+        row = 0
+
+        # Заявки на ОПЕКУ
         for r in test_data.RENTALS:
             pet = test_data.find_by_id(test_data.PETS, r['pet_id'])
             if pet and pet['shelter_id'] == self.user['id'] and r['status'] == 'ожидает':
                 person = test_data.find_by_id(test_data.USERS, r['user_id'])
-                text = f"Опека: {pet['name']} | {person['name']} | {r['date_from']} – {r['date_to']}"
-                self.requestsList.addItem(text)
+                self.requestsTable.insertRow(row)
+                self.requestsTable.setItem(row, 0, QTableWidgetItem("Опека"))
+                self.requestsTable.setItem(row, 1, QTableWidgetItem(pet['name']))
+                self.requestsTable.setItem(row, 2, QTableWidgetItem(person['name']))
+                self.requestsTable.setItem(row, 3, QTableWidgetItem(f"{r['date_from']} - {r['date_to']}"))
+                self.requestsTable.setItem(row, 4, QTableWidgetItem(r['status']))
                 self.requests.append(('rental', r))
+                row += 1
 
+        # Заявки на УСЫНОВЛЕНИЕ
         for a in test_data.ADOPTIONS:
             pet = test_data.find_by_id(test_data.PETS, a['pet_id'])
             if pet and pet['shelter_id'] == self.user['id'] and a['status'] == 'ожидает':
                 person = test_data.find_by_id(test_data.USERS, a['user_id'])
-                text = f"Усыновление: {pet['name']} | {person['name']} | тел. {a['phone']} | «{a['reason']}»"
-                self.requestsList.addItem(text)
+                self.requestsTable.insertRow(row)
+                self.requestsTable.setItem(row, 0, QTableWidgetItem("Усыновление"))
+                self.requestsTable.setItem(row, 1, QTableWidgetItem(pet['name']))
+                self.requestsTable.setItem(row, 2, QTableWidgetItem(person['name']))
+                self.requestsTable.setItem(row, 3, QTableWidgetItem(f"Тел: {a['phone']}"))
+                self.requestsTable.setItem(row, 4, QTableWidgetItem(a['status']))
                 self.requests.append(('adoption', a))
+                row += 1
 
-        self.countReq1.setText(f"Всего заявок: {self.requestsList.count()}")
+        # Настройка ширины колонок: Инфо (3) растягивается, остальные по размеру текста
+        header = self.requestsTable.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Stretch) # Инфо растягивается
+        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
+        self.requestsTable.setColumnWidth(4, 120) # Фиксируем ширину "Действие"
+
+        self.countReq1.setText(f"Всего заявок: {self.requestsTable.rowCount()}")
 
     def load_history(self):
-        """Загружает рассмотренные заявки"""
-        self.historyList.clear()
-        count = 0
+        """Загружает рассмотренные заявки в таблицу historyTable"""
+        self.historyTable.setRowCount(0)
+        row = 0
 
         for r in test_data.RENTALS:
             pet = test_data.find_by_id(test_data.PETS, r['pet_id'])
             if pet and pet['shelter_id'] == self.user['id'] and r['status'] != 'ожидает':
                 person = test_data.find_by_id(test_data.USERS, r['user_id'])
-                text = f"Опека: {pet['name']} | {person['name']} | {r['date_from']} – {r['date_to']} | {r['status']}"
-                self.historyList.addItem(text)
-                count += 1
+                self.historyTable.insertRow(row)
+                self.historyTable.setItem(row, 0, QTableWidgetItem("Опека"))
+                self.historyTable.setItem(row, 1, QTableWidgetItem(pet['name']))
+                self.historyTable.setItem(row, 2, QTableWidgetItem(person['name']))
+                self.historyTable.setItem(row, 3, QTableWidgetItem(f"{r['date_from']} - {r['date_to']}"))
+                self.historyTable.setItem(row, 4, QTableWidgetItem(r['status']))
+                row += 1
 
         for a in test_data.ADOPTIONS:
             pet = test_data.find_by_id(test_data.PETS, a['pet_id'])
             if pet and pet['shelter_id'] == self.user['id'] and a['status'] != 'ожидает':
                 person = test_data.find_by_id(test_data.USERS, a['user_id'])
-                text = f"Усыновление: {pet['name']} | {person['name']} | {a['status']}"
-                self.historyList.addItem(text)
-                count += 1
+                self.historyTable.insertRow(row)
+                self.historyTable.setItem(row, 0, QTableWidgetItem("Усыновление"))
+                self.historyTable.setItem(row, 1, QTableWidgetItem(pet['name']))
+                self.historyTable.setItem(row, 2, QTableWidgetItem(person['name']))
+                self.historyTable.setItem(row, 3, QTableWidgetItem(f"Тел: {a['phone']}"))
+                self.historyTable.setItem(row, 4, QTableWidgetItem(a['status']))
+                row += 1
 
-        self.countReq2.setText(f"Всего заявок: {count}")
+        header = self.historyTable.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Stretch) # Инфо растягивается
+        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
+
+        self.countReq2.setText(f"Всего заявок: {self.historyTable.rowCount()}")
 
     def load_stats(self):
-        """Считает статистику приюта"""
+        """Считает статистику"""
         sid = self.user['id']
         total = free = rented = adopted = 0
 
@@ -95,80 +164,78 @@ class ShelterWindow(QMainWindow):
                 elif pet['status'] == 'усыновлён':
                     adopted += 1
 
-        ratings = []
-        for r in test_data.REVIEWS:
-            if r['shelter_id'] == sid:
-                ratings.append(r['rating'])
+        ratings = [r['rating'] for r in test_data.REVIEWS if r['shelter_id'] == sid]
+        rating_text = f'{sum(ratings) / len(ratings):.1f}' if ratings else 'нет отзывов'
 
-        if not ratings:
-            rating_text = 'нет отзывов'
-        else:
-            rating_text = f'{sum(ratings) / len(ratings):.1f}'
-
-        stats_text = f"Всего питомцев: {total}\nСвободны: {free}\nНа опеке: {rented}\nУсыновлены: {adopted}\nРейтинг: {rating_text}"
+        stats_text = f"Всего питомцев: {total}\nСвободны: {free} | На опеке: {rented} | Усыновлены: {adopted}\nРейтинг: {rating_text} ★"
         self.statsLabel.setText(stats_text)
 
     def load_pets(self):
-        """Загружает питомцев этого приюта"""
-        self.listPets.clear()
+        """Загружает питомцев в таблицу petsTable"""
+        self.petsTable.setRowCount(0)
         self.pet_ids = []
+        row = 0
+
         for pet in test_data.PETS:
             if pet['shelter_id'] == self.user['id']:
-                self.listPets.addItem(f"{pet['name']} ({pet['kind']}) — {pet['status']}")
+                self.petsTable.insertRow(row)
+
+                self.petsTable.setItem(row, 0, QTableWidgetItem(pet['name']))     # Кличка
+                self.petsTable.setItem(row, 1, QTableWidgetItem(pet['kind']))     # Вид
+                self.petsTable.setItem(row, 2, QTableWidgetItem(str(pet['age'])))# Возраст
+                self.petsTable.setItem(row, 3, QTableWidgetItem(pet['status']))  # Статус
+
                 self.pet_ids.append(pet['id'])
+                row += 1
+
+        header = self.petsTable.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Stretch) # Инфо растягивается
+        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
+        self.petsTable.setColumnWidth(4, 120) # Фиксируем ширину "Действие"
 
     def approve(self):
-        row = self.requestsList.currentRow()
+        row = self.requestsTable.currentRow()
         if row == -1:
-            self.errorLabel.setText('Ошибка: выберите заявку в списке!')
+            self.errorLabel.setText('Ошибка: выберите заявку!')
             return
-
         kind, request = self.requests[row]
         pet = test_data.find_by_id(test_data.PETS, request['pet_id'])
-
         if pet['status'] != 'свободен':
             self.errorLabel.setText(f"Ошибка: {pet['name']} уже занят!")
             return
-
         request['status'] = 'одобрено'
-        if kind == 'rental':
-            pet['status'] = 'на опеке'
-        else:
-            pet['status'] = 'усыновлён'
-
+        pet['status'] = 'на опеке' if kind == 'rental' else 'усыновлён'
         self.errorLabel.setText(f'Заявка на {pet["name"]} одобрена!')
         self.load_all()
 
     def reject(self):
-        row = self.requestsList.currentRow()
+        row = self.requestsTable.currentRow()
         if row == -1:
-            self.errorLabel.setText('Ошибка: выберите заявку в списке!')
+            self.errorLabel.setText('Ошибка: выберите заявку!')
             return
-
         kind, request = self.requests[row]
         request['status'] = 'отклонено'
-
         self.errorLabel.setText('Заявка отклонена.')
         self.load_all()
 
     def open_pet_card(self):
-        row = self.listPets.currentRow()
+        row = self.petsTable.currentRow()
         if row == -1:
             self.errorLabel.setText('Выберите питомца.')
             return
-
         pet_id = self.pet_ids[row]
-        self.errorLabel.setText(f'Открывается карточка питомца (ID: {pet_id})')
+        self.errorLabel.setText(f'Открывается карточка (ID: {pet_id})')
 
     def delete_pet(self):
-        row = self.listPets.currentRow()
+        row = self.petsTable.currentRow()
         if row == -1:
             self.errorLabel.setText('Выберите питомца.')
             return
-
         pet_id = self.pet_ids[row]
         pet = test_data.find_by_id(test_data.PETS, pet_id)
-
         reply = QMessageBox.question(self, 'Удаление', f'Удалить {pet["name"]}?',
                                      QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         if reply == QMessageBox.StandardButton.Yes:

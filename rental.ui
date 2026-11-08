@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>250</height>
+    <width>561</width>
+    <height>289</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,6 +18,7 @@
   </property>
   <property name="font">
    <font>
+    <family>Papyrus</family>
     <pointsize>11</pointsize>
    </font>
   </property>
@@ -32,46 +33,137 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>393</width>
-     <height>220</height>
+     <width>571</width>
+     <height>341</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <family>Segoe UI</family>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* --- ОБЩИЙ ФОН --- */
+QWidget {
+    background-color: #FDF7FA;
+    color: #4A4A4A;
+}
+
+/* --- ИМЯ ПИТОМЦА --- */
+QLabel#petLabel {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2E659C; 
+}
+
+/* --- ПОЛЯ ДАТ --- */
+QDateEdit {
+    background-color: #FFFFFF;
+    border: 2px solid #A8DADC; /* Голубая рамка */
+    border-radius: 6px;
+    padding-left: 10px;
+    font-size: 13px;
+}
+QDateEdit:focus {
+    border: 2px solid #E76F51; /* Персиковая при клике */
+}
+
+/* --- СРОК --- */
+QLabel#daysLabel {
+    font-size: 13px;
+    color: #E76F51;
+    font-weight: bold;
+}
+
+/* --- ГАЛОЧКА --- */
+QCheckBox {
+    color: #2E659C; 
+    font-size: 13px;
+    spacing: 10px;
+}
+
+/* --- КНОПКА --- */
+QPushButton#sendBtn {
+    background-color: #2E659C;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 10px;
+}
+QPushButton#sendBtn:hover {
+    background-color: #F4D8CC;
+}
+QPushButton#sendBtn:disabled {
+    background-color: #B0BEC5;
+}
+
+/* --- ОШИБКИ --- */
+QLabel#errorLabel {
+    font-weight: bold;
+    font-size: 12px;
+    color: #F0745D;
+}</string>
    </property>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>11</x>
-      <y>11</y>
-      <width>371</width>
-      <height>198</height>
+      <x>0</x>
+      <y>12</y>
+      <width>555</width>
+      <height>278</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>7</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="leftMargin">
+      <number>20</number>
+     </property>
+     <property name="topMargin">
+      <number>20</number>
+     </property>
+     <property name="rightMargin">
+      <number>20</number>
+     </property>
+     <property name="bottomMargin">
+      <number>20</number>
+     </property>
      <item>
       <widget class="QLabel" name="petLabel">
        <property name="font">
         <font>
+         <pointsize>-1</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
         <string notr="true">font-weight: bold;
-color: #2E8B57; </string>
+</string>
        </property>
        <property name="text">
         <string>Питомец </string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
      <item>
-      <layout class="QFormLayout" name="formLayout">
+      <layout class="QFormLayout" name="formLayout_2">
        <item row="0" column="0">
         <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>Segoe UI,Arial,sans-serif</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>С какого числа:</string>
          </property>
@@ -79,6 +171,24 @@ color: #2E8B57; </string>
        </item>
        <item row="0" column="1">
         <widget class="QDateEdit" name="dateFromEdit">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>-1</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #ffffff;
+border: 1px solid #cccccc;
+border-radius: 5px;
+padding: 5px;
+font-size: 14px;</string>
+         </property>
          <property name="calendarPopup">
           <bool>true</bool>
          </property>
@@ -92,6 +202,12 @@ color: #2E8B57; </string>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI,Arial,sans-serif</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>По какое:</string>
          </property>
@@ -99,6 +215,24 @@ color: #2E8B57; </string>
        </item>
        <item row="1" column="1">
         <widget class="QDateEdit" name="dateToEdit">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>-1</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #ffffff;
+border: 1px solid #cccccc;
+border-radius: 5px;
+padding: 5px;
+font-size: 14px;</string>
+         </property>
          <property name="calendarPopup">
           <bool>true</bool>
          </property>
@@ -110,7 +244,9 @@ color: #2E8B57; </string>
       <widget class="QLabel" name="daysLabel">
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -122,28 +258,63 @@ color: #2E8B57; </string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="sendBtn">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>35</height>
-        </size>
-       </property>
+      <widget class="QCheckBox" name="agreeCheckBox">
        <property name="font">
         <font>
-         <weight>75</weight>
-         <bold>true</bold>
+         <pointsize>-1</pointsize>
         </font>
        </property>
+       <property name="tabletTracking">
+        <bool>false</bool>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">white-space: normal;</string>
+       </property>
        <property name="text">
-        <string>Отправить заявку</string>
+        <string>Я обязуюсь ухаживать за питомцем и вернуть его в приют по окончании срока</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="errorLabel">
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">white-space: normal;</string>
+       </property>
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="sendBtn">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Отправить заявку</string>
        </property>
       </widget>
      </item>
@@ -154,7 +325,7 @@ color: #2E8B57; </string>
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
+     <y>10</y>
      <width>3</width>
      <height>27</height>
     </rect>
