@@ -1,30 +1,203 @@
-/* Общий стиль Муртеки. Подключается в main.py одной строкой. */
-QWidget { background: #FFFFFF; color: #23344A; font-family: "Segoe UI"; font-size: 14px; }
-QLabel { background: transparent; }
-QLabel#titleLabel, QLabel#title, QLabel#helloLabel { color: #2E659C; font-size: 24px; font-weight: 700; }
-QLabel#petLabel, QLabel#shelterLabel { color: #2E659C; font-size: 18px; font-weight: 700; }
-QLabel#avgLabel, QLabel#daysLabel, QLabel#statsLabel, QLabel#statusLabel { color: #2E659C; font-weight: 600; }
-QLabel#errorLabel { color: #F0745D; font-weight: 600; }
-QLineEdit, QTextEdit, QPlainTextEdit, QDateEdit, QSpinBox, QComboBox {
-  background: #F6E6DF; border: 1px solid #E7BE96; border-radius: 8px; padding: 6px 10px; color: #23344A; }
-QLineEdit:focus, QTextEdit:focus, QDateEdit:focus { border: 2px solid #2E659C; }
-QPushButton { background: #2E659C; color: #FFFFFF; border: none; border-radius: 10px; padding: 9px 18px; font-weight: 700; }
-QPushButton#registerBtn, QPushButton#forgotBtn, QPushButton#backBtn, QPushButton#refreshBtn, QPushButton#refreshBtn1, QPushButton#refreshBtn2, QPushButton#editBtn, QPushButton#openBtn {
-  background: #E7BE96; color: #23344A; }
-QPushButton#rejectBtn, QPushButton#deleteBtn { background: #F0745D; color: #FFFFFF; }
-QListWidget, QTableWidget { background: #FFFFFF; border: 1px solid #F4D8CC; border-radius: 10px; padding: 4px; }
-QListWidget::item { padding: 6px; border-radius: 6px; }
-QListWidget::item:alternate { background: #F6E6DF; }
-QListWidget::item:selected { background: #F4D8CC; color: #2E659C; }
-QTabWidget::pane { border: 1px solid #F4D8CC; border-radius: 10px; top: -1px; }
-QTabBar::tab { background: #F6E6DF; color: #23344A; padding: 8px 16px; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-right: 3px; }
-QTabBar::tab:selected { background: #2E659C; color: #FFFFFF; font-weight: 700; }
-QRadioButton, QCheckBox { background: transparent; spacing: 8px; }
-QMenuBar, QStatusBar { background: #FFFFFF; }
-QSplitter::handle { background: #F4D8CC; }
-QRadioButton::indicator, QCheckBox::indicator { width: 14px; height: 14px; border: 2px solid #2E659C; background: #FFFFFF; }
+/* ============================================================
+   Общий стиль Муртеки (в стилистике кабинета приюта Алины)
+   Палитра: синий #2E659C, бежевый #E7BE96, светло-розовый #F6E6DF,
+            розовый #F4D8CC, красный #F0745D, фон #F7F9FC
+   ============================================================ */
+
+/* --- ОБЩИЙ ФОН И ШРИФТ --- */
+QWidget {
+    background-color: #F7F9FC;
+    color: #3A4A5C;
+    font-family: "Segoe UI";
+    font-size: 13px;
+}
+QLabel, QRadioButton, QCheckBox, QSplitter {
+    background: transparent;
+}
+QMenuBar, QStatusBar {
+    background-color: #F7F9FC;
+    color: #6B7A8C;
+}
+
+/* --- ЗАГОЛОВКИ --- */
+LoginWindow QLabel#label, RegisterWindow QLabel#label {
+    color: #2E659C;
+    font-size: 24px;
+    font-weight: bold;
+}
+QLabel#titleLabel, QLabel#header, QLabel#helloLabel {
+    color: #2E659C;
+    font-size: 20px;
+    font-weight: bold;
+}
+QLabel#petLabel, QLabel#shelterLabel, QLabel#shelterNameLabel {
+    color: #2E659C;
+    font-size: 20px;
+    font-weight: bold;
+}
+QLabel#avgLabel, QLabel#statusLabel, QLabel#countReq1, QLabel#countReq2,
+QLabel#reviewsLabel, QLabel#ratingLabel, QLabel#reasonLabel, QLabel#phoneLabel {
+    color: #2E659C;
+    font-weight: bold;
+}
+QLabel#daysLabel {
+    color: #F0745D;
+    font-weight: bold;
+}
+QLabel#errorLabel {
+    color: #F0745D;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* --- КАРТОЧКИ (белые блоки с тонкой рамкой) --- */
+QWidget#profileWidget {
+    background-color: #FFFFFF;
+    border: 1px solid #F4D8CC;
+    border-radius: 8px;
+}
+QLabel#statsLabel, QLabel#shelterPhoneLabel {
+    background-color: #FFFFFF;
+    border: 1px solid #F4D8CC;
+    border-radius: 6px;
+    padding: 8px;
+}
+
+/* --- ПОЛЯ ВВОДА --- */
+QLineEdit, QPlainTextEdit, QTextEdit, QDateEdit, QSpinBox, QComboBox {
+    background-color: #FFFFFF;
+    border: 2px solid #C4D1E1;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: #3A4A5C;
+    selection-background-color: #F4D8CC;
+    selection-color: #2E659C;
+}
+QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus,
+QDateEdit:focus, QSpinBox:focus, QComboBox:focus {
+    border: 2px solid #E7BE96;
+}
+
+/* --- КНОПКИ: главная (синяя) --- */
+QPushButton {
+    background-color: #2E659C;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+}
+QPushButton:hover    { background-color: #3A76B0; }
+QPushButton:pressed  { background-color: #24527F; }
+QPushButton:disabled { background-color: #B0BEC5; color: #FFFFFF; }
+
+/* --- КНОПКИ: второстепенные (бежевые) --- */
+LoginWindow QPushButton#registerBtn,
+QPushButton#rejectBtn, QPushButton#deleteBtn, QPushButton#editProfileBtn,
+QPushButton#reviewBtn, QPushButton#shelterBtn {
+    background-color: #E7BE96;
+    color: #FFFFFF;
+}
+LoginWindow QPushButton#registerBtn:hover, QPushButton#editProfileBtn:hover,
+QPushButton#reviewBtn:hover, QPushButton#shelterBtn:hover {
+    background-color: #DDAE80;
+}
+QPushButton#rejectBtn:hover, QPushButton#deleteBtn:hover {
+    background-color: #F0745D;
+}
+
+/* --- КНОПКИ: контурные (обновить, назад, забыли пароль) --- */
+QPushButton#refreshBtn, QPushButton#refreshBtn1, QPushButton#refreshBtn2,
+QPushButton#backBtn, QPushButton#forgotBtn {
+    background-color: #FFFFFF;
+    color: #2E659C;
+    border: 2px solid #C4D1E1;
+    border-radius: 8px;
+}
+QPushButton#refreshBtn:hover, QPushButton#refreshBtn1:hover, QPushButton#refreshBtn2:hover,
+QPushButton#backBtn:hover, QPushButton#forgotBtn:hover {
+    background-color: #2E659C;
+    color: #FFFFFF;
+    border-color: #2E659C;
+}
+
+/* --- ТАБЛИЦЫ И СПИСКИ --- */
+QTableWidget, QListWidget {
+    background-color: #FFFFFF;
+    color: #333333;
+    border: 1px solid #C4D1E1;
+    border-radius: 6px;
+    gridline-color: #F0F4F8;
+    selection-background-color: #E8EEF5;
+    selection-color: #2E659C;
+    alternate-background-color: #F7F9FC;
+    outline: none;
+}
+QTableWidget::item { padding: 5px; }
+QListWidget::item  { padding: 7px; border-radius: 4px; }
+QListWidget::item:selected, QTableWidget::item:selected {
+    background-color: #E8EEF5;
+    color: #2E659C;
+}
+QHeaderView::section {
+    background-color: #F7F9FC;
+    color: #2E659C;
+    font-weight: bold;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #C4D1E1;
+    border-right: 1px solid #F0F4F8;
+}
+QTableCornerButton::section { background-color: #F7F9FC; border: none; }
+
+/* --- ВКЛАДКИ --- */
+QTabWidget::pane {
+    border: 1px solid #F4D8CC;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    top: -1px;
+}
+QTabWidget > QWidget > QWidget { background-color: #FFFFFF; }
+QTabBar::tab {
+    background-color: #F6E6DF;
+    color: #555555;
+    padding: 8px 25px;
+    border: 1px solid #F4D8CC;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-right: 2px;
+    font-weight: 600;
+}
+QTabBar::tab:hover:!selected { background-color: #F4D8CC; }
+QTabBar::tab:selected {
+    background-color: #FFFFFF;
+    color: #2E659C;
+    font-weight: bold;
+    border-top: 3px solid #F0745D;
+}
+
+/* --- ГАЛОЧКИ И ПЕРЕКЛЮЧАТЕЛИ --- */
+QRadioButton, QCheckBox { spacing: 8px; }
+QCheckBox { color: #2E659C; }
+QRadioButton::indicator, QCheckBox::indicator {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #C4D1E1;
+    background-color: #FFFFFF;
+}
 QRadioButton::indicator { border-radius: 9px; }
-QCheckBox::indicator { border-radius: 4px; }
-QRadioButton::indicator:checked, QCheckBox::indicator:checked { background: #2E659C; }
-LoginWindow QLabel#label, RegisterWindow QLabel#label { color: #2E659C; font-size: 28px; font-weight: 800; }
-RegisterWindow QPushButton#registerBtn { background: #2E659C; color: #FFFFFF; }
+QCheckBox::indicator    { border-radius: 4px; }
+QRadioButton::indicator:hover, QCheckBox::indicator:hover { border-color: #2E659C; }
+QRadioButton::indicator:checked, QCheckBox::indicator:checked {
+    background-color: #2E659C;
+    border-color: #2E659C;
+}
+
+/* --- ПОЛОСЫ ПРОКРУТКИ --- */
+QScrollBar:vertical { background: transparent; width: 10px; margin: 2px; }
+QScrollBar::handle:vertical { background: #C4D1E1; border-radius: 4px; min-height: 30px; }
+QScrollBar::handle:vertical:hover { background: #2E659C; }
+QScrollBar::add-line, QScrollBar::sub-line { height: 0; width: 0; }
+QScrollBar:horizontal { background: transparent; height: 10px; margin: 2px; }
+QScrollBar::handle:horizontal { background: #C4D1E1; border-radius: 4px; min-width: 30px; }
