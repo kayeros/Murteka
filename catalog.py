@@ -15,6 +15,8 @@ class CatalogWindow(QMainWindow):
     def __init__(self, user):
         super().__init__()
         uic.loadUi('catalog.ui', self)
+        with open('style.qss', encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
         self.user = user
         #cписки для хранения данных о питомцах (по индексу строки в списке)
         self.pet_ids = []
