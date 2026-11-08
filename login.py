@@ -1,6 +1,8 @@
 import sys
 
 from PyQt6 import uic
+from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication, QWidget
 from register import RegisterWindow
 from catalog import CatalogWindow
@@ -12,6 +14,10 @@ class LoginWindow(QWidget):
     def __init__(self):
         super().__init__()
         uic.loadUi('login.ui', self)
+        with open('style.qss', encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
+        logo = QPixmap('logo.png')
+        self.label.setPixmap(logo.scaledToHeight(150, Qt.TransformationMode.SmoothTransformation))
         self.registerBtn.clicked.connect(self.open_register)
         self.loginBtn.clicked.connect(self.login)
         self.forgotBtn.clicked.connect(self.forgot_password)

@@ -9,6 +9,8 @@ class RegisterWindow(QWidget):
 
     def __init__(self, login_window):
         super().__init__()
+        with open('style.qss', encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
         uic.loadUi("register.ui", self)
         self.login_window = login_window
         self.registerBtn.clicked.connect(self.register)

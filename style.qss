@@ -1,0 +1,30 @@
+/* Общий стиль Муртеки. Подключается в main.py одной строкой. */
+QWidget { background: #FFFFFF; color: #23344A; font-family: "Segoe UI"; font-size: 14px; }
+QLabel { background: transparent; }
+QLabel#titleLabel, QLabel#title, QLabel#helloLabel { color: #2E659C; font-size: 24px; font-weight: 700; }
+QLabel#petLabel, QLabel#shelterLabel { color: #2E659C; font-size: 18px; font-weight: 700; }
+QLabel#avgLabel, QLabel#daysLabel, QLabel#statsLabel, QLabel#statusLabel { color: #2E659C; font-weight: 600; }
+QLabel#errorLabel { color: #F0745D; font-weight: 600; }
+QLineEdit, QTextEdit, QPlainTextEdit, QDateEdit, QSpinBox, QComboBox {
+  background: #F6E6DF; border: 1px solid #E7BE96; border-radius: 8px; padding: 6px 10px; color: #23344A; }
+QLineEdit:focus, QTextEdit:focus, QDateEdit:focus { border: 2px solid #2E659C; }
+QPushButton { background: #2E659C; color: #FFFFFF; border: none; border-radius: 10px; padding: 9px 18px; font-weight: 700; }
+QPushButton#registerBtn, QPushButton#forgotBtn, QPushButton#backBtn, QPushButton#refreshBtn, QPushButton#refreshBtn1, QPushButton#refreshBtn2, QPushButton#editBtn, QPushButton#openBtn {
+  background: #E7BE96; color: #23344A; }
+QPushButton#rejectBtn, QPushButton#deleteBtn { background: #F0745D; color: #FFFFFF; }
+QListWidget, QTableWidget { background: #FFFFFF; border: 1px solid #F4D8CC; border-radius: 10px; padding: 4px; }
+QListWidget::item { padding: 6px; border-radius: 6px; }
+QListWidget::item:alternate { background: #F6E6DF; }
+QListWidget::item:selected { background: #F4D8CC; color: #2E659C; }
+QTabWidget::pane { border: 1px solid #F4D8CC; border-radius: 10px; top: -1px; }
+QTabBar::tab { background: #F6E6DF; color: #23344A; padding: 8px 16px; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-right: 3px; }
+QTabBar::tab:selected { background: #2E659C; color: #FFFFFF; font-weight: 700; }
+QRadioButton, QCheckBox { background: transparent; spacing: 8px; }
+QMenuBar, QStatusBar { background: #FFFFFF; }
+QSplitter::handle { background: #F4D8CC; }
+QRadioButton::indicator, QCheckBox::indicator { width: 14px; height: 14px; border: 2px solid #2E659C; background: #FFFFFF; }
+QRadioButton::indicator { border-radius: 9px; }
+QCheckBox::indicator { border-radius: 4px; }
+QRadioButton::indicator:checked, QCheckBox::indicator:checked { background: #2E659C; }
+LoginWindow QLabel#label, RegisterWindow QLabel#label { color: #2E659C; font-size: 28px; font-weight: 800; }
+RegisterWindow QPushButton#registerBtn { background: #2E659C; color: #FFFFFF; }
