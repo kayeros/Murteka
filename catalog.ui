@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>898</width>
-    <height>600</height>
+    <width>927</width>
+    <height>643</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,17 +17,31 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>30</x>
       <y>100</y>
-      <width>704</width>
-      <height>277</height>
+      <width>881</width>
+      <height>401</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="3" column="0" colspan="2">
+     <item row="1" column="0">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLineEdit" name="searchEdit">
+         <property name="placeholderText">
+          <string>Поиск по кличке...</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="4" column="0" colspan="2">
+      <widget class="QListWidget" name="petsList"/>
+     </item>
+     <item row="5" column="0" colspan="2">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QPushButton" name="openBtn">
@@ -80,7 +94,18 @@
        </item>
       </layout>
      </item>
-     <item row="0" column="1">
+     <item row="0" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="helloLabel">
+         <property name="text">
+          <string>Вы вошли: </string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QRadioButton" name="allRadio">
@@ -124,27 +149,6 @@
        </item>
       </layout>
      </item>
-     <item row="0" column="0">
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QLabel" name="helloLabel">
-         <property name="text">
-          <string>Вы вошли: </string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="searchEdit">
-         <property name="placeholderText">
-          <string>Поиск по кличке...</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="2" column="0" colspan="2">
-      <widget class="QListWidget" name="petsList"/>
-     </item>
     </layout>
    </widget>
   </widget>
@@ -153,7 +157,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>898</width>
+     <width>927</width>
      <height>22</height>
     </rect>
    </property>

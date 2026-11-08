@@ -11,6 +11,8 @@ class ReviewWindow(QWidget):
     def __init__(self, user, shelter_id):
         super().__init__()
         uic.loadUi(str(Path(__file__).with_name('review.ui')), self)
+        with open(Path(__file__).with_name('style.qss'), encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
         self.user = user
         self.shelter_id = shelter_id
         self.sendBtn.clicked.connect(self.send)
