@@ -12,6 +12,8 @@ class AdoptionWindow(QWidget):
         super().__init__()
         # Форма лежит рядом с кодом; путь работает из любой папки запуска.
         uic.loadUi(str(Path(__file__).with_name('adoption.ui')), self)
+        with open(Path(__file__).with_name('style.qss'), encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
         self.user = user
         self.pet_id = pet_id
         self.sendBtn.clicked.connect(self.send)
