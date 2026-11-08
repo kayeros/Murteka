@@ -8,6 +8,8 @@ class PetCardWindow(QWidget):
     def __init__(self, user, pet_id):
         super().__init__()
         uic.loadUi('pet_card.ui', self)
+        with open('style.qss', encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
         self.user = user
         self.pet_id = pet_id
 
