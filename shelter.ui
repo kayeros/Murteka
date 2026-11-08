@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>801</width>
-    <height>611</height>
+    <width>789</width>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="font">
    <font>
@@ -19,68 +25,308 @@
    <string>Кабинет приюта</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <property name="maximumSize">
+    <size>
+     <width>800</width>
+     <height>800</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* --- ОБЩИЙ ФОН --- */
+QWidget {
+    background-color: #F7F9FC;
+
+}
+/* --- ВИЗИТКА ПРИЮТА --- */
+QWidget#profileWidget {
+    background-color: #FFFFFF;
+    border: 1px solid #C4D1E1;
+    border-radius: 6px;
+}
+
+/* --- ОШИБКИ --- */
+QLabel#errorLabel {
+    color: #F0745D;
+    font-weight: bold;
+}
+/* --- ТАБЛИЦЫ --- */
+QTableWidget {
+    background-color: #FFFFFF;
+    color: #333333;
+    border: 1px solid #C4D1E1;
+    border-radius: 6px;
+    gridline-color: #F0F4F8;
+    selection-background-color: #E8EEF5;
+    selection-color: #2E659C;
+    outline: none;
+}
+
+QTableWidget::item {
+    padding: 5px;
+}
+
+QTableWidget::item:alternate {
+    background-color: #F7F9FC; 
+}
+
+QHeaderView::section {
+    background-color: #F7F9FC;
+    color: #2E659C;
+    font-weight: bold;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #C4D1E1;
+    border-right: 1px solid #F0F4F8;
+}</string>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
-      <width>781</width>
-      <height>561</height>
+      <y>10</y>
+      <width>771</width>
+      <height>761</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
-     <property name="leftMargin">
-      <number>10</number>
-     </property>
-     <property name="topMargin">
-      <number>10</number>
-     </property>
-     <property name="rightMargin">
-      <number>10</number>
-     </property>
-     <property name="bottomMargin">
-      <number>10</number>
-     </property>
      <item>
-      <widget class="QLabel" name="titleLabel">
+      <widget class="QLabel" name="header">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>32</height>
+        </size>
+       </property>
        <property name="font">
         <font>
-         <pointsize>-1</pointsize>
+         <family>Segoe UI,Arial,sans-serif</family>
+         <pointsize>14</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">font-size: 20px; 
-font-weight: bold; 
-color: #3B82F6;
-padding-bottom: 5px;</string>
+        <string notr="true">color: #2E659C;
+padding-left: 10px;
+font-weight: bold;</string>
        </property>
        <property name="text">
-        <string>Кабинет приюта </string>
+        <string>Кабинет приюта</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="statsLabel">
+      <widget class="QWidget" name="profileWidget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>770</width>
+         <height>270</height>
+        </size>
+       </property>
        <property name="font">
         <font>
-         <pointsize>9</pointsize>
+         <family>Segoe UI</family>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-color: #666666; 
-border-radius: 5px; 
-padding: 8px;</string>
+        <string notr="true">background-color: #FFFFFF;
+border: 1px solid #F6E6DF;
+border-radius: 8px;
+padding: 10px;</string>
        </property>
-       <property name="text">
-        <string>Рейтинг:</string>
-       </property>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>461</width>
+          <height>243</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <property name="leftMargin">
+          <number>15</number>
+         </property>
+         <property name="topMargin">
+          <number>15</number>
+         </property>
+         <property name="rightMargin">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>15</number>
+         </property>
+         <property name="horizontalSpacing">
+          <number>20</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>10</number>
+         </property>
+         <item row="0" column="1">
+          <widget class="QLabel" name="shelterNameLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>Segoe UI</family>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #2E659C;
+font-weight: bold;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="statsLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #FFFFFF;
+color: #555555;
+border: 1px solid #F4D8CC;
+border-radius: 8px;</string>
+           </property>
+           <property name="text">
+            <string>Рейтинг:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QPushButton" name="editProfileBtn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #E7BE96;
+color: #2E659Crgb(255, 233, 197);
+border-radius: 6px;
+padding: 10px;
+font-weight: bold;</string>
+           </property>
+           <property name="text">
+            <string>Редактировать профиль</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="shelterPhoneLabel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(0, 0, 0);</string>
+           </property>
+           <property name="text">
+            <string>dfdsf</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" rowspan="4">
+          <widget class="QLabel" name="pic">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>220</width>
+             <height>220</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: 2px solid #E8EEF5;
+border-radius: 20px; 
+background-color: #F7F9FC;
+color: #2E659C;
+qproperty-alignment: AlignCenter;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </item>
      <item>
       <widget class="QTabWidget" name="tabWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>420</height>
+        </size>
+       </property>
        <property name="focusPolicy">
         <enum>Qt::TabFocus</enum>
        </property>
@@ -88,19 +334,38 @@ padding: 8px;</string>
         <enum>Qt::DefaultContextMenu</enum>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTabBar::tab {min-width: 120px;
-    padding: 8px 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-weight: bold;
+        <string notr="true">/* --- ВКЛАДКИ --- */
+QTabWidget::pane {
+    border: 1px solid #F4D8CC;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    top: -1px; 
 }
+
+QTabBar::tab {
+    background-color: #F6E6DF;
+    color: #555555;
+    padding: 8px 25px; 
+    border: 1px solid #F4D8CC;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-right: 2px;
+    qproperty-documentMode: false; 
+    font-weight: 600;
+}
+
 QTabBar::tab:selected {
-    color: #2196F3;
-    border-bottom: 2px solid #2196F3;
-}</string>
+    background-color: #FFFFFF;
+    color: #2E659C;
+    font-weight: bold;
+    border-top: 3px solid #F0745D;
+}
+
+r</string>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <property name="elideMode">
         <enum>Qt::ElideNone</enum>
@@ -124,13 +389,13 @@ QTabBar::tab:selected {
         <attribute name="title">
          <string>Новые заявки</string>
         </attribute>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>0</x>
            <y>0</y>
            <width>761</width>
-           <height>331</height>
+           <height>371</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
@@ -162,14 +427,55 @@ QTabBar::tab:selected {
            </widget>
           </item>
           <item>
-           <widget class="QListWidget" name="requestsList">
-            <property name="styleSheet">
-             <string notr="true">border: 1px solid #cccccc; 
-border-radius: 5px; 
-background-color: #ffffff;
-font-size: 12px;
-color: #333333;</string>
+           <widget class="QTableWidget" name="requestsTable">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>147</number>
+            </attribute>
+            <attribute name="horizontalHeaderMinimumSectionSize">
+             <number>70</number>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>New Row</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string>Тип</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Питомец</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Кто подал</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Инфо</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Действие</string>
+             </property>
+            </column>
            </widget>
           </item>
           <item>
@@ -204,10 +510,20 @@ color: #333333;</string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color: #4CAF50; 
-color: white; 
-font-weight: bold; 
-border-radius: 5px; </string>
+                <string notr="true">
+QPushButton#approveBtn {
+    background-color: #2E659C;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px;
+}
+QPushButton#approveBtn:hover {
+    background-color: #F4D8CC;
+}
+QPushButton#approveBtn:disabled {
+    background-color: #B0BEC5;
+}</string>
                </property>
                <property name="text">
                 <string>✓ Одобрить</string>
@@ -228,10 +544,20 @@ border-radius: 5px; </string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color: #f44336; 
-color: white; 
-font-weight: bold; 
-border-radius: 5px; </string>
+                <string notr="true">
+QPushButton#rejectBtn {
+    background-color: #E7BE96;
+    color: #2E659Crgb(255, 233, 197);
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px;
+}
+QPushButton#rejectBtn:hover {
+    background-color: #F0745D;
+}
+QPushButton#rejectBtn:disabled {
+    background-color: #F0745D;
+}</string>
                </property>
                <property name="text">
                 <string>✗ Отклонить</string>
@@ -244,10 +570,28 @@ border-radius: 5px; </string>
               <property name="font">
                <font>
                 <pointsize>9</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true"/>
+               <string notr="true">QPushButton{
+background-color: #F7F9FC;
+color: #2E659C;
+border: 3px solid #C4D1E1;
+border-radius: 6px;
+padding: 8px 15px;
+font-weight: bold;
+}
+QPushButton#refreshBtn1:hover {
+    background-color: #2E659C;
+    color: white;
+}
+QPushButton#refreshBtn1:disabled {
+    background-color: #2E659C;
+    color: white;
+}
+</string>
               </property>
               <property name="text">
                <string>Обновить</string>
@@ -263,13 +607,13 @@ border-radius: 5px; </string>
         <attribute name="title">
          <string>Рассмотренные</string>
         </attribute>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>0</x>
            <y>0</y>
            <width>761</width>
-           <height>331</height>
+           <height>371</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -298,14 +642,52 @@ border-radius: 5px; </string>
            </widget>
           </item>
           <item>
-           <widget class="QListWidget" name="historyList">
-            <property name="styleSheet">
-             <string notr="true">border: 1px solid #cccccc; 
-border-radius: 5px; 
-background-color: #ffffff;
-font-size: 12px;
-color: #333333;</string>
+           <widget class="QTableWidget" name="historyTable">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>147</number>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>New Row</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string>Тип</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Питомец</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Кто подал</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Инфо</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Статус</string>
+             </property>
+            </column>
            </widget>
           </item>
           <item>
@@ -313,7 +695,28 @@ color: #333333;</string>
             <property name="font">
              <font>
               <pointsize>9</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+background-color: #F7F9FC;
+color: #2E659C;
+border: 3px solid #C4D1E1;
+border-radius: 6px;
+padding: 8px 15px;
+font-weight: bold;
+}
+QPushButton#refreshBtn2:hover {
+    background-color: #2E659C;
+    color: white;
+}
+QPushButton#refreshBtn2:disabled {
+    background-color: #2E659C;
+    color: white;
+}
+</string>
             </property>
             <property name="text">
              <string>Обновить</string>
@@ -327,16 +730,19 @@ color: #333333;</string>
         <attribute name="title">
          <string>Мои питомцы</string>
         </attribute>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>761</width>
-           <height>331</height>
+           <width>751</width>
+           <height>381</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>10</number>
+          </property>
           <property name="leftMargin">
            <number>10</number>
           </property>
@@ -350,14 +756,47 @@ color: #333333;</string>
            <number>10</number>
           </property>
           <item>
-           <widget class="QListWidget" name="listPets">
-            <property name="styleSheet">
-             <string notr="true">border: 1px solid #cccccc; 
-border-radius: 5px; 
-background-color: #ffffff;
-font-size: 12px;
-color: #333333;</string>
+           <widget class="QTableWidget" name="petsTable">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>182</number>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>New Row</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string>Кличка</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Вид</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Возраст</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Статус</string>
+             </property>
+            </column>
            </widget>
           </item>
           <item>
@@ -369,8 +808,26 @@ color: #333333;</string>
              <widget class="QPushButton" name="editBtn">
               <property name="font">
                <font>
-                <pointsize>9</pointsize>
+                <pointsize>-1</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton#editBtn {
+    background-color: #2E659C;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 10px;
+}
+QPushButton#editBtn:hover {
+    background-color: #F4D8CC;
+}
+QPushButton#editBtn:disabled {
+    background-color: #B0BEC5;
+}</string>
               </property>
               <property name="text">
                <string>✏ Редактировать</string>
@@ -382,7 +839,25 @@ color: #333333;</string>
               <property name="font">
                <font>
                 <pointsize>9</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+QPushButton#deleteBtn {
+    background-color: #E7BE96;
+    color: #2E659Crgb(255, 233, 197);
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px;
+}
+QPushButton#deleteBtn:hover {
+    background-color: #F0745D;
+}
+QPushButton#deleteBtn:disabled {
+    background-color: #F0745D;
+}</string>
               </property>
               <property name="text">
                <string>✗ Удалить</string>
